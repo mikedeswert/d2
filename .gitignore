@@ -8,7 +8,17 @@ items.csv
 items_relics.csv
 skills.csv
 travel.csv
+*.log
 
-.idea
+# Composer
 vendor
+
+# Vagrant
 vagrant/webroot
+.vagrant
+
+# mac
+.DS_Store
+
+# IntelliJ project files
+.idea
