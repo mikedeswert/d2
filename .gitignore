@@ -8,3 +8,7 @@ items.csv
 items_relics.csv
 skills.csv
 travel.csv
+
+.idea
+vendor
+vagrant/webroot
