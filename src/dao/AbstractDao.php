@@ -1,7 +1,7 @@
 <?php namespace App\Dao;
     abstract class AbstractDao {
         public function findByName() {
-            // TODO sql query on table with name;
+            return '';
         }
 
         protected abstract function getTableName();

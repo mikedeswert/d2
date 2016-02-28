@@ -1,5 +1,8 @@
 <?php namespace App\Model\Campaign\Quest;
     use App\Model\Campaign\Encounter\NotYetCompleted;
+    use App\Model\Campaign\Shopping\ShoppingStep;
+    use App\Model\Campaign\SpendXp\SpendXpStep;
+    use App\Model\Campaign\Travel\TravelStep;
     use SplObjectStorage;
     use App\Model\Campaign\Encounter\Encounter;
     use App\Model\Campaign\Act;
@@ -10,11 +13,19 @@
         private $selected = false;
         private $prerequisites;
         private $winner = 'overlord';
+        private $travelStep;
+        private $spendXpStep;
+        private $shoppingStep;
+        private $travelEventTypes;
 
         public function __construct() {
             $this->encounters = new SplObjectStorage();
+            $this->travelEventTypes = array();
             $this->prerequisites = new SplObjectStorage();
             $this->prerequisites->attach(new NotYetCompleted());
+            $this->travelStep = new TravelStep();
+            $this->spendXpStep = new SpendXpStep();
+            $this->shoppingStep = new ShoppingStep();
         }
 
         public function getName() {
@@ -77,6 +88,26 @@
 
         public function setWinner($winner) {
             $this->winner = $winner;
+        }
+
+        public function getTravelStep() {
+            return $this->travelStep;
+        }
+
+        public function getSpendXpStep() {
+            return $this->spendXpStep;
+        }
+
+        public function getShoppingStep() {
+            return $this->shoppingStep;
+        }
+
+        public function getTravelEventTypes() {
+            return $this->travelEventTypes;
+        }
+
+        public function addTravelEventType($travelEventType) {
+            $this->travelEventTypes[] = $travelEventType;
         }
 
         public function isCompleted() {

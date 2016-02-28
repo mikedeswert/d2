@@ -3,6 +3,7 @@
 use App\Dao\ItemDao;
 use App\Dao\MonsterTraitDao;
 use App\Dao\MonsterGroupDao;
+use App\Dao\TravelEventTypeDao;
 use App\Model\Campaign\Act;
 use App\Model\Campaign\Campaign;
 use App\Model\Campaign\Encounter\Encounter;
@@ -18,11 +19,16 @@ class ShadowRuneCampaignFactory {
     private $monsterGroupDao;
     private $monsterTraitDao;
     private $itemDao;
+    private $travelEventTypeDao;
 
-    public function __construct(MonsterGroupDao $monsterGroupDao, MonsterTraitDao $monsterTraitDao, ItemDao $itemDao) {
+    public function __construct(MonsterGroupDao $monsterGroupDao,
+                                MonsterTraitDao $monsterTraitDao,
+                                ItemDao $itemDao,
+                                TravelEventTypeDao $travelEventTypeDao) {
         $this->monsterGroupDao = $monsterGroupDao;
         $this->monsterTraitDao = $monsterTraitDao;
         $this->itemDao = $itemDao;
+        $this->travelEventTypeDao = $travelEventTypeDao;
     }
 
     public function createShadowRuneCampaign() {
@@ -71,6 +77,9 @@ class ShadowRuneCampaignFactory {
     private function createFatGoblin() {
         $fatGoblin = new Quest();
         $fatGoblin->setName('Fat Goblin');
+        $fatGoblin->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $fatGoblin->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $fatGoblin->addTravelEventType($this->travelEventTypeDao->findByName('Plain'));
 
         $encounterOne = new Encounter();
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Forest'));
@@ -97,6 +106,8 @@ class ShadowRuneCampaignFactory {
     private function createCastleDaerion() {
         $castleDaerion = new Quest();
         $castleDaerion->setName('Castle Daerion');
+        $castleDaerion->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $castleDaerion->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
 
         $encounterOne = new Encounter();
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('City'));
@@ -134,6 +145,10 @@ class ShadowRuneCampaignFactory {
         $theShadowVault = new Quest();
         $theShadowVault->setName('The Shadow Vault');
         $theShadowVault->addPrerequisite(new NumberOfQuestInActWonBy(2, 'Act I', 'heroes'));
+        $theShadowVault->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $theShadowVault->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $theShadowVault->addTravelEventType($this->travelEventTypeDao->findByName('Plain'));
+        $theShadowVault->addTravelEventType($this->travelEventTypeDao->findByName('Forest'));
 
         $encounterOne = new Encounter();
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Undead'));
@@ -155,6 +170,10 @@ class ShadowRuneCampaignFactory {
         $theOverlordRevealed = new Quest();
         $theOverlordRevealed->setName('The Overlord Revealed');
         $theOverlordRevealed->addPrerequisite(new NumberOfQuestInActWonBy(2, 'Act I', 'overlord'));
+        $theOverlordRevealed->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $theOverlordRevealed->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $theOverlordRevealed->addTravelEventType($this->travelEventTypeDao->findByName('Plain'));
+        $theOverlordRevealed->addTravelEventType($this->travelEventTypeDao->findByName('Forest'));
 
         $encounterOne = new Encounter();
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Night'));
@@ -186,6 +205,12 @@ class ShadowRuneCampaignFactory {
         $monstersHoard = new Quest();
         $monstersHoard->setName('Monster\'s Hoard');
         $monstersHoard->addPrerequisite(new QuestWonBy('Fat Goblin', 'heroes'));
+        $monstersHoard->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $monstersHoard->addTravelEventType($this->travelEventTypeDao->findByName('River'));
+        $monstersHoard->addTravelEventType($this->travelEventTypeDao->findByName('Mountain'));
+        $monstersHoard->addTravelEventType($this->travelEventTypeDao->findByName('Plain'));
+        $monstersHoard->addTravelEventType($this->travelEventTypeDao->findByName('Forest'));
+        $monstersHoard->addTravelEventType($this->travelEventTypeDao->findByName('Mountain'));
 
         $encounterOne = new Encounter();
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Forest'));
@@ -213,6 +238,12 @@ class ShadowRuneCampaignFactory {
         $frozenSpire = new Quest();
         $frozenSpire->setName('Frozen Spire');
         $frozenSpire->addPrerequisite(new QuestWonBy('Fat Goblin', 'overlord'));
+        $frozenSpire->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
+        $frozenSpire->addTravelEventType($this->travelEventTypeDao->findByName('River'));
+        $frozenSpire->addTravelEventType($this->travelEventTypeDao->findByName('Mountain'));
+        $frozenSpire->addTravelEventType($this->travelEventTypeDao->findByName('Plain'));
+        $frozenSpire->addTravelEventType($this->travelEventTypeDao->findByName('Forest'));
+        $frozenSpire->addTravelEventType($this->travelEventTypeDao->findByName('Mountain'));
 
         $encounterOne = new Encounter();
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Water'));
