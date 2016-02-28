@@ -37,7 +37,7 @@
                 return;
             }
 
-            $this->xp -= $skill->getXpCost();
+            $this->xp = $this->xp - $skill->getXpCost();
             $this->skills->attach($skill);
         }
 
