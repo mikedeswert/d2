@@ -1,6 +1,7 @@
 <?php namespace App\Model;
     class Game {
         private $gameGroup;
+        private $expansions;
 
         public function getGameGroup() {
             return $this->gameGroup;

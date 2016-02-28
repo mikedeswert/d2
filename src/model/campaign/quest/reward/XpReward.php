@@ -1,4 +1,5 @@
 <?php namespace App\Model\Campaign;
+    use App\Model\Player;
     use SplObjectStorage;
 
     class XpReward implements Reward {
@@ -18,7 +19,9 @@
 
         public function applyTo(SplObjectStorage $recipients) {
             foreach($recipients as $recipient) {
-                $recipient->addXp($this->amount);
+                if($recipient instanceof Player) {
+                    $recipient->addXp($this->amount);
+                }
             }
         }
     }

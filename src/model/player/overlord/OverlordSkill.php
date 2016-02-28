@@ -7,10 +7,10 @@
         private $type;
         private $xpCost;
         private $basic = false;
-        private $prerequisite;
+        private $prerequisites;
 
         public function __construct() {
-            $this->prerequisite = new NotYetTakenPrerequisite();
+            $this->prerequisites = new SplObjectStorage();
         }
 
         public function getName() {
@@ -45,16 +45,22 @@
             $this->basic = $basic;
         }
 
-        public function getPrerequisite() {
-            return $this->prerequisite;
+        public function getPrerequisites() {
+            return $this->prerequisites;
         }
 
         public function setPrerequisite(OverlordSkillPrerequisite $prerequisite) {
             $this->prerequisite = $prerequisite;
         }
 
-        public function isPrerequisiteMet(SplObjectStorage $skills) {
-            $this->prerequisite->isMet($skills, $this);
+        public function arePrerequisitesMet(SplObjectStorage $skills) {
+            foreach($this->prerequisites as $prerequisite) {
+                if(!$prerequisite->isMet($skills, $this)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 ?>

@@ -39,6 +39,16 @@
             return null;
         }
 
+        public function getActByName($actName) {
+            foreach ($this->acts as $act) {
+                if($act->getName() == $actName) {
+                    return $act;
+                }
+            }
+
+            return null;
+        }
+
         public function addAct($act) {
             $this->acts->attach($act);
         }
@@ -57,6 +67,18 @@
 
         public function setOverlord($overlord) {
             $this->overlord = $overlord;
+        }
+
+        public function getQuestByName($name) {
+            foreach($this->acts as $act) {
+                foreach($act->getQuests() as $quest) {
+                    if($quest->getName() == $name) {
+                        return $quest;
+                    }
+                }
+            }
+
+            return null;
         }
 
         public function start() {

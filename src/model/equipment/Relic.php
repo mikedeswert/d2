@@ -1,9 +1,20 @@
 <?php namespace App\Model;
+    use App\Model\Campaign\Campaign;
     use App\Model\Campaign\Reward;
     use SplObjectStorage;
 
-    class Relic implements Equipment, Reward {
-        public function isBuyPossible() {
+    class Relic implements Item, Reward {
+        private $name;
+
+        public function getName() {
+            return $this->name;
+        }
+
+        public function setName($name) {
+            $this->name = $name;
+        }
+
+        public function isBuyPossible(Campaign $campaign) {
             return false;
         }
 
@@ -21,7 +32,7 @@
 
         public function applyTo(SplObjectStorage $recipients) {
             foreach($recipients as $recipient) {
-                $recipient->addEquipment($this);
+                $recipient->addItem($this);
             }
         }
     }

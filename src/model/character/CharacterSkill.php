@@ -1,4 +1,6 @@
 <?php namespace App\Model;
+    use SplObjectStorage;
+
     class CharacterSkill implements Skill {
         private $name = '';
         private $xpCost = 0;
@@ -26,6 +28,10 @@
 
         public function setBasic($basic) {
             $this->basic = $basic;
+        }
+
+        public function arePrerequisitesMet(SplObjectStorage $skills) {
+            return true;
         }
     }
 ?>

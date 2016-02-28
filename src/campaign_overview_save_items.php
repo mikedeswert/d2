@@ -134,7 +134,7 @@
 					} else {
 						echo 'Available Gold: ' . ($availableGold - $selectionPrice);
 					} ?>
-		   	</hp>
+		   	</p>
 		  </div>
 		  <div class="panel-body"><?php
 				foreach ($_SESSION["shopItems"] as $si){

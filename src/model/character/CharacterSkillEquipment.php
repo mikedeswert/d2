@@ -1,12 +1,12 @@
 <?php namespace App\Model;
-    class CharacterSkillEquipment extends CharacterSkill implements Equipment {
-        private $sellValue;
+    use App\Model\Campaign\Campaign;
 
-        public function setSellValue($sellValue) {
-            $this->sellValue = $sellValue;
+    class CharacterSkillItem extends CharacterSkill implements Item {
+        public function isBasic() {
+            return true;
         }
 
-        public function isBuyPossible() {
+        public function isBuyPossible(Campaign $campaign) {
             return false;
         }
 
@@ -19,7 +19,7 @@
         }
 
         public function getSellValue() {
-            return $this->sellValue;
+            return 25;
         }
     }
 ?>

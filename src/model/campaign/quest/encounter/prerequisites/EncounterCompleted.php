@@ -1,7 +1,7 @@
 <?php namespace App\Model\Campaign\Encounter;
     use App\Model\Campaign\Quest\Quest;
 
-    class EncounterCompletedPrerequisite implements EncounterPrerequisite {
+    class EncounterCompleted implements EncounterPrerequisite {
         private $encounterName;
 
         public function __construct($encounterName) {

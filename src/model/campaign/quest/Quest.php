@@ -1,4 +1,5 @@
 <?php namespace App\Model\Campaign\Quest;
+    use App\Model\Campaign\Encounter\NotYetCompleted;
     use SplObjectStorage;
     use App\Model\Campaign\Encounter\Encounter;
     use App\Model\Campaign\Act;
@@ -8,10 +9,12 @@
         private $encounters;
         private $selected = false;
         private $prerequisites;
+        private $winner = 'overlord';
 
         public function __construct() {
             $this->encounters = new SplObjectStorage();
             $this->prerequisites = new SplObjectStorage();
+            $this->prerequisites->attach(new NotYetCompleted());
         }
 
         public function getName() {
@@ -66,6 +69,14 @@
             }
 
             return true;
+        }
+
+        public function getWinner() {
+            return $this->winner;
+        }
+
+        public function setWinner($winner) {
+            $this->winner = $winner;
         }
 
         public function isCompleted() {
