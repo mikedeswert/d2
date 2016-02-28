@@ -37,6 +37,8 @@ class ShadowRuneCampaignFactory {
         $campaign->addAct($this->createActOne());
         $campaign->addAct($this->createInterlude());
         $campaign->addAct($this->createActTwo());
+
+        return $campaign;
     }
 
     private function createIntroduction() {
