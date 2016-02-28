@@ -33,7 +33,7 @@
         }
 
         public function addSkill(Skill $skill) {
-            if(!$this->xp < $skill->getXpCost() || !$skill->arePrerequisitesMet($this->skills)) {
+            if($this->xp < $skill->getXpCost() || !$skill->arePrerequisitesMet($this->skills)) {
                 return;
             }
 
