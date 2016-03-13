@@ -10,10 +10,13 @@
         private $skills;
         private $xp;
         private $items;
+        private $plotAbilities;
+        private $threat;
 
         public function __construct() {
             $this->skills = new SplObjectStorage();
             $this->items = new SplObjectStorage();
+            $this->plotAbilities = new SplObjectStorage();
         }
 
         public function getCharacterName() {
@@ -75,6 +78,22 @@
             }
 
             $this->items->detach($item);
+        }
+
+        public function getPlotAbilities() {
+            return $this->plotAbilities;
+        }
+
+        public function addPlotAbility($plotAbility) {
+            $this->plotAbilities->attach($plotAbility);
+        }
+
+        public function getThreat() {
+            return $this->threat;
+        }
+
+        public function setThreat($threat) {
+            $this->threat = $threat;
         }
     }
 ?>

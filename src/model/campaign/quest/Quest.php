@@ -111,8 +111,7 @@
         }
 
         public function isCompleted() {
-            // Will need to edit this to be compatible with Mists of Bilehall Finale
-            foreach($this->encounters as $encounter) {
+            foreach($this->getSelectableEncounters() as $encounter) {
                 if($encounter->isCompleted() == false) {
                     return false;
                 }

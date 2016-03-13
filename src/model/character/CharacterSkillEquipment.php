@@ -10,6 +10,10 @@
             return false;
         }
 
+        public function isTradePossible() {
+            return false;
+        }
+
         public function isSellPossible() {
             return true;
         }

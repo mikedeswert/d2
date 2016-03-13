@@ -49,8 +49,8 @@
             return $this->prerequisites;
         }
 
-        public function setPrerequisite(OverlordSkillPrerequisite $prerequisite) {
-            $this->prerequisite = $prerequisite;
+        public function addPrerequisite(OverlordSkillPrerequisite $prerequisite) {
+            $this->prerequisites->attach($prerequisite);
         }
 
         public function arePrerequisitesMet(SplObjectStorage $skills) {

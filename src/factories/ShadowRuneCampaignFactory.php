@@ -55,7 +55,7 @@ class ShadowRuneCampaignFactory {
         $firstBlood->setName('First Blood');
 
         $encounterOne = new Encounter();
-        $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Forest'));
+        $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Wilderness'));
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Mountain'));
         $encounterOne->addFixedMonsterGroup($this->monsterGroupDao->findByName('Goblin Archers'));
         $encounterOne->addFixedMonsterGroup($this->monsterGroupDao->findByName('Ettins'));
@@ -84,7 +84,7 @@ class ShadowRuneCampaignFactory {
         $fatGoblin->addTravelEventType($this->travelEventTypeDao->findByName('Plain'));
 
         $encounterOne = new Encounter();
-        $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Forest'));
+        $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Wilderness'));
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('City'));
         $encounterOne->addFixedMonsterGroup($this->monsterGroupDao->findByName('Goblin Archers'));
         $encounterOne->setNumberOfOpenGroups(1);
@@ -112,14 +112,14 @@ class ShadowRuneCampaignFactory {
         $castleDaerion->addTravelEventType($this->travelEventTypeDao->findByName('Road'));
 
         $encounterOne = new Encounter();
-        $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('City'));
+        $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Civilized'));
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Water'));
         $encounterOne->addMonsterTrait($this->monsterTraitDao->findByName('Night'));
         $encounterOne->setNumberOfOpenGroups(2);
         $castleDaerion->addEncounter($encounterOne);
 
         $encounterTwo = new Encounter();
-        $encounterTwo->addMonsterTrait($this->monsterTraitDao->findByName('City'));
+        $encounterTwo->addMonsterTrait($this->monsterTraitDao->findByName('Civilized'));
         $encounterTwo->addMonsterTrait($this->monsterTraitDao->findByName('Dungeon'));
         $encounterTwo->addFixedMonsterGroup($this->monsterGroupDao->findByName('Sir Alric Farrow'));
         $encounterTwo->addFixedMonsterGroup($this->monsterGroupDao->findByName('Ettins'));
@@ -136,6 +136,7 @@ class ShadowRuneCampaignFactory {
     private function createInterlude() {
         $interlude = new Act();
         $interlude->setName('Interlude');
+        $interlude->addShopItemPrerequisite(new IsForAct('Act I'));
         $interlude->setNumberOfQuestsToComplete(1);
         $interlude->addQuest($this->createTheShadowVault());
         $interlude->addQuest($this->createTheOverlordRevealed());
